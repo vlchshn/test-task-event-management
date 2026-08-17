@@ -1,22 +1,22 @@
 # Event Management API
 
-Django REST API for managing events and handling user registrations.
+Django REST API for managing events and user registrations.
 
 ## Features
 
-- **User Authentication:** Registration and JWT authentication (`djangorestframework-simplejwt`).
-- **Event Management:** Full CRUD operations with custom permissions (only organizers can edit/delete their events).
-- **Event Registration:** User registration for upcoming events with validation preventing double registration or past-event registration.
-- **Search & Filtering:** Event search by title/description and filtering by date/location (`django-filter`).
-- **Background Notifications:** Asynchronous email confirmation upon event registration using Celery & Redis.
-- **API Documentation:** OpenAPI 3 schema and interactive Swagger UI via `drf-spectacular`.
-- **CI/CD:** Automated code linting/formatting with Ruff, test suite with `pytest`, and GitHub Actions workflow.
+- **User Authentication:** Registration and JWT-based auth via `djangorestframework-simplejwt`.
+- **Event Management:** Full CRUD with permissions — only the organizer can edit or delete their own events.
+- **Event Registration:** Users can register for events; double registration and past-event registration are blocked.
+- **Search & Filtering:** Events can be searched by title/description and filtered by date or location (`django-filter`).
+- **Email Notifications:** Registration confirmation emails are sent asynchronously via Celery & Redis.
+- **API Docs:** OpenAPI 3 schema + Swagger UI powered by `drf-spectacular`.
+- **Linting, Tests & CI:** Ruff for code style, `pytest` for tests, GitHub Actions for automation.
 
 ## Tech Stack
 
 - **Language & Framework:** Python 3.12, Django 6, Django REST Framework
 - **Database & Queue:** PostgreSQL 15, Redis 7, Celery
-- **Tooling:** Poetry, Ruff, pre-commit, pytest, Docker, Docker Compose
+- **Tooling:** Poetry, Ruff, pre-commit, pytest, Docker & Docker Compose
 
 ---
 
@@ -31,7 +31,7 @@ Django REST API for managing events and handling user registrations.
 
 1. **Clone the repository:**
 ```bash
-   git clone <repository-url>
+   git clone https://github.com/vlchshn/test-task-event-management.git
    cd test-task-event-management
 ```
 
@@ -39,7 +39,7 @@ Django REST API for managing events and handling user registrations.
 ```bash
    cp .env.example .env
 ```
-   Ensure `POSTGRES_HOST=db` and `REDIS_URL=redis://redis:6379/0` inside `.env` for Docker containers.
+   Make sure `POSTGRES_HOST=db` and `REDIS_URL=redis://redis:6379/0` are set inside `.env` for Docker.
 
 3. **Build and start services:**
 ```bash
@@ -89,7 +89,7 @@ Django REST API for managing events and handling user registrations.
    poetry run celery -A core worker -l INFO --pool=solo
 ```
 
-### Testing & Quality Control
+### Testing
 
 - **Run Pytest:**
 ```bash
